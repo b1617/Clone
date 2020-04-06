@@ -1,11 +1,12 @@
 const HttpStatus = require('http-status-codes');
+const userService = require('../services/user.services');
 
-signIn = (req, res) => {
+function signIn(req, res) {
   // need to create token and refresh token
   res.status(HttpStatus.OK).json({});
-};
+}
 
-signUp = (req, res) => {
+function signUp(req, res) {
   userService
     .create(req.body)
     .then((user) => {
@@ -14,7 +15,7 @@ signUp = (req, res) => {
     .catch((err) => {
       return res.status(HttpStatus.NOT_ACCEPTABLE).json(err);
     });
-};
+}
 
 module.exports = {
   signIn,

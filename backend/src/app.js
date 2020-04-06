@@ -1,12 +1,19 @@
 const express = require('express');
-const userRouter = require('./routes/user.routes');
+const bodyParser = require('body-parser');
 const mongodb = require('./config/mongodb');
+const userRouter = require('./routes/user.routes');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
+// database
 mongodb.start();
 
+// config
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// routes
 app.get('/', (req, res) => {
   res.send('Hello world');
 });

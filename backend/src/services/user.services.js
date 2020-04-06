@@ -1,26 +1,28 @@
 const User = require('../models/user.models');
 
-getByEmail = (email) => {
+function getByEmail(email) {
   return new Promise((resolve, reject) => {
     User.findOne({ email })
       .then((user) => resolve(user))
       .catch((err) => reject(err));
   });
-};
+}
 
-create = (params) => {
+function create(params) {
+  console.log('create with', params);
   return new Promise((resolve, reject) => {
     const email = params.email;
     getByEmail(email)
       .then((user) => {
-        if (user) reject(new Error('User already exists'));
+        console.log(user);
+        if (user) return Promise.reject('User already exists');
       })
       .then(() => new User(params).save())
       .then((user) => resolve(user))
       .catch((err) => reject(err));
   });
-};
+}
 
-module.export = {
+module.exports = {
   create,
 };
