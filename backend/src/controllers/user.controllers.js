@@ -1,9 +1,11 @@
 const HttpStatus = require('http-status-codes');
 const userService = require('../services/user.services');
+const jwt = require('../jwt');
 
 function signIn(req, res) {
-  // need to create token and refresh token
-  res.status(HttpStatus.OK).json({});
+  const user = req.user;
+  const token = jwt.createToken(user);
+  res.status(HttpStatus.OK).json({ user, token });
 }
 
 function signUp(req, res) {
@@ -19,5 +21,5 @@ function signUp(req, res) {
 
 module.exports = {
   signIn,
-  signUp,
+  signUp
 };

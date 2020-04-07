@@ -4,7 +4,7 @@ start = () => {
   mongoose.connect('mongodb://localhost/clone', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   });
 };
 
@@ -14,5 +14,5 @@ stop = () => {
 
 module.exports = {
   start,
-  stop,
+  stop
 };
