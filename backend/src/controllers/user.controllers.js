@@ -4,8 +4,8 @@ const jwt = require('../jwt');
 
 function signIn(req, res) {
   const user = req.user;
-  const token = jwt.createToken(user);
-  res.status(HttpStatus.OK).json({ user, token });
+  const tokens = jwt.createTokens(user);
+  res.status(HttpStatus.OK).json({ user, tokens });
 }
 
 function signUp(req, res) {

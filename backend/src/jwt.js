@@ -1,14 +1,43 @@
 const jwt = require('jsonwebtoken');
 
-function createToken(user) {
+function createAccessToken(user) {
+  return jwt.sign({ sub: user.id }, process.env.JWT_ACCESS_KEY, {
+    expiresIn: '30s'
+  });
+}
+
+function createRefreshToken(user) {
   return jwt.sign(
     {
       sub: user.id,
-      iat: new Date().getTime(),
-      exp: new Date().setDate(new Date().getDate() + 1)
+      iat: new Date().getTime()
     },
-    process.env.JWT_KEY
+    process.env.JWT_REFRESH_KEY,
+    { expiresIn: '1d' }
   );
 }
 
-module.exports = { createToken };
+function createTokens(user) {
+  const accessToken = createAccessToken(user);
+  const refreshToken = createRefreshToken(user);
+  return { accessToken, refreshToken };
+}
+
+function isValidToken(token, key) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, key, (err, result) => {
+      console.log(result);
+      if (err || !result) {
+        reject(err);
+      }
+      return resolve(result);
+    });
+  });
+}
+
+module.exports = {
+  createAccessToken,
+  createRefreshToken,
+  createTokens,
+  isValidToken
+};

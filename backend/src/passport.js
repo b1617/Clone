@@ -9,7 +9,7 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.JWT_KEY
+      secretOrKey: process.env.JWT_ACCESS_KEY
     },
     (payload, done) => {
       User.findById(payload.sub)
