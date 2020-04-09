@@ -1,4 +1,5 @@
 const User = require('../models/user.models');
+const redis = require('../config/redis');
 const jwt = require('../jwt');
 
 function getByEmail(email) {
@@ -19,8 +20,9 @@ function create(params) {
       })
       .then(() => new User(params).save())
       .then((user) => {
-        const token = jwt.createToken(user);
-        resolve({ user, token });
+        const tokens = jwt.createTokens(user);
+        redis.set(user.id, tokens.refreshToken);
+        resolve({ user, tokens });
       })
       .catch((err) => reject(err));
   });
