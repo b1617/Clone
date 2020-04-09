@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
         const accessToken = jwt.createAccessToken({ id: userId });
         res.status(HttpStatus.OK).json({ accessToken });
       }
-      res.status(HttpStatus.NOT_FOUND);
+      res.sendStatus(HttpStatus.NOT_FOUND);
     })
     .catch((err) => {
       res.status(HttpStatus.UNAUTHORIZED).json(err);

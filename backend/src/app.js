@@ -17,9 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
-
 app.get('/', (req, res) => {
-  res.send('Hello world');
+  res.send('Hello world ??');
 });
 
 app.use('/token', tokenRouter);

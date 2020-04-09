@@ -25,11 +25,10 @@ function get(key) {
 }
 
 function set(key, value) {
-  client.setex(key, 300, value);
+  client.set(key, value);
 }
 
 function remove(key) {
-  console.log(key);
   client.del(key);
 }
 
