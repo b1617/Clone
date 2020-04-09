@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
-start = () => {
+function start() {
   mongoose.connect('mongodb://localhost/clone', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
   });
-};
+}
 
-stop = () => {
+function stop() {
   mongoose.connection.close();
-};
+}
 
 module.exports = {
   start,

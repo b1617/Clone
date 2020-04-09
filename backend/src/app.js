@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const redis = require('./config/redis');
 const mongodb = require('./config/mongodb');
 const userRouter = require('./routes/user.routes');
 const tokenRouter = require('./routes/token.routes');
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 8080;
 
 // database
 mongodb.start();
+redis.start();
 
 // config
 app.use(bodyParser.json());
