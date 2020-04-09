@@ -46,7 +46,7 @@ class signin extends Component {
           Sign In
         </Button>
         <a href=''>
-          <p style={{ marginTop: '5px' }}> Sign up for Clone </p>
+          <p style={{ marginTop: '8px' }}> Sign up for Clone </p>
         </a>
       </Form>
     );
@@ -59,11 +59,11 @@ class signin extends Component {
   };
 
   formGroupStyle = {
-    width: '400px'
+    width: '500px'
   };
 
   btnStyle = {
-    width: '400px',
+    width: '500px',
     borderRadius: '10px'
   };
 }

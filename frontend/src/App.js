@@ -1,14 +1,19 @@
-import React from 'react';
 import './App.css';
-import { Button } from 'react-bootstrap';
-import Signin from './components/signin';
+import React from 'react';
+import { Route, BrowserRouter } from 'react-router-dom';
+import Login from './pages/Login';
+import Logup from './pages/Logup';
+import NavigationBar from './components/NavigationBar';
 
 function App() {
   return (
-    <div className='App'>
-      <hr />
-      <Signin></Signin>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <NavigationBar></NavigationBar>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/logup' component={Logup}></Route>
+      </div>
+    </BrowserRouter>
   );
 }
 
