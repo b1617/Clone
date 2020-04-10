@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 class signin extends Component {
   state = {
     email: '',
@@ -45,9 +45,9 @@ class signin extends Component {
         >
           Sign In
         </Button>
-        <a href=''>
+        <Link to='/logup'>
           <p style={{ marginTop: '8px' }}> Sign up for Clone </p>
-        </a>
+        </Link>
       </Form>
     );
   }
