@@ -1,6 +1,44 @@
 .App {
-  display: 'flex';
-  flex-direction: 'column';
+  display: flex;
+  flex-direction: column;
   background-color: #15202b;
   min-height: 100vh;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  grid-template-rows: 30% 70%;
+  border-bottom: 1px solid #253341;
+  grid-template-areas: 'div1 div2 weather'
+  'div1 div2 signin';
+}
+.grid > * {
+  margin: 5px;
+}
+
+.first {
+  grid-area: div1;
+  color: white;
+  border-right: 1px solid #253341;
+}
+
+.second {
+  grid-area: div2;
+  color : red;
+  border-right: 1px solid #253341;
+}
+
+.signin {
+  grid-area: signin;
+}
+
+ form > div, button {
+  width: 300px !important; 
+}
+
+.weather {
+  grid-area: weather;
+  color : yellow;
+  border-bottom: 1px solid #253341;
 }
