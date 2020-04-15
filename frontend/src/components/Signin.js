@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import * as AuthService from '../services/auth';
+import { login } from '../actions';
+import { connect } from 'react-redux';
 
 class Signin extends Component {
   state = {
@@ -21,6 +23,9 @@ class Signin extends Component {
     AuthService.signIn(this.state.email, this.state.password)
       .then((result) => {
         console.log('logged in ', result);
+        this.props.login();
+        localStorage.setItem('currentUser', JSON.stringify(result.user));
+        this.props.history.push('/');
       })
       .catch((err) => {
         console.log('fail signin', err);
@@ -77,4 +82,10 @@ class Signin extends Component {
   };
 }
 
-export default Signin;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: () => dispatch(login())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Signin);
