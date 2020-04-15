@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import * as AuthService from '../services/auth';
+
 class Signin extends Component {
   state = {
     email: '',
@@ -16,6 +18,13 @@ class Signin extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log('state', this.state);
+    AuthService.signIn(this.state.email, this.state.password)
+      .then((result) => {
+        console.log('logged in ', result);
+      })
+      .catch((err) => {
+        console.log('fail signin', err);
+      });
   };
 
   render() {
