@@ -8,6 +8,12 @@ export class Output extends Component {
       <div style={{ margin: '50px 50px 0px 0px' }}>
         <Form.Group controlId='exampleForm.ControlTextarea1'>
           <Form.Control
+            style={{
+              backgroundColor: '#263238',
+              color: 'white',
+              border: '0px',
+              radius: '0px'
+            }}
             as='textarea'
             rows='12'
             readOnly

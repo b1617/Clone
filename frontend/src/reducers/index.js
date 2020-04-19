@@ -1,10 +1,10 @@
-import loggedReducer from './isLogged';
 import outputReducer from './output';
 import { combineReducers } from 'redux';
+import { firebaseReducer } from 'react-redux-firebase';
 
 const allReducers = combineReducers({
-  isLogged: loggedReducer,
-  output: outputReducer
+  output: outputReducer,
+  firebase: firebaseReducer
 });
 
 export default allReducers;

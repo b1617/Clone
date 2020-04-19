@@ -9,12 +9,11 @@ import { connect } from 'react-redux';
 
 class Codemirror extends Component {
   state = {
-    request: '',
-    response: ''
+    request: ''
   };
 
   run = (event) => {
-    let text = '';
+    let text = null;
     try {
       text = eval(this.state.request);
     } catch (e) {
@@ -22,18 +21,16 @@ class Codemirror extends Component {
         text = e.message;
       }
     }
-    console.log('repnse ', text);
-    this.setState({
-      response: text
-    });
-    console.log(this.state);
+    text = !text ? 'undefined' : text;
     this.props.output(text);
   };
 
   render() {
     return (
       <div style={{ margin: '15px 50px 50px 50px' }}>
-        <h4 style={{ color: 'white' }}>Javascript</h4>
+        <div>
+          <h4 style={{ color: 'white' }}>Javascript</h4>
+        </div>
         <CodeMirror
           value={this.state.request}
           options={{
@@ -44,12 +41,25 @@ class Codemirror extends Component {
           onBeforeChange={(editor, data, value) => {
             this.setState({ request: value });
           }}
-          onChange={(editor, data, value) => {}}
+          // onChange={(editor, data, value) => {}}
         />
-        <Button onClick={this.run}>Run</Button>
+        <div style={this.divBtn}>
+          <Button style={this.btn} variant='outline-primary' onClick={this.run}>
+            Submit
+          </Button>
+        </div>
       </div>
     );
   }
+
+  divBtn = {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  };
+  btn = {
+    marginLeft: '1px',
+    width: '20%'
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {

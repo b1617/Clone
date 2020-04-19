@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, Form, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 class NavigationBar extends Component {
   render() {
@@ -57,8 +55,6 @@ class NavigationBar extends Component {
   navStyle = {
     display: 'flex',
     borderBottom: '1px solid #253341'
-    // marginLeft: '100px',
-    // marginRight: '100px'
   };
 
   logupBtnStyle = {
@@ -73,10 +69,4 @@ class NavigationBar extends Component {
   };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLogged: state.isLogged
-  };
-};
-
-export default connect(mapStateToProps)(NavigationBar);
+export default NavigationBar;

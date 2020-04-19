@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import Logup from './pages/Logup';
 import NavigationBar from './components/NavigationBar';
@@ -10,9 +10,11 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <NavigationBar></NavigationBar>
-        <Code></Code>
-        <Route path='/login' component={Login}></Route>
-        <Route path='/logup' component={Logup}></Route>
+        <Switch>
+          <Route exact path='/' component={Code}></Route>
+          <Route exact path='/login' component={Login}></Route>
+          <Route exact path='/logup' component={Logup}></Route>
+        </Switch>
       </div>
     </BrowserRouter>
   );

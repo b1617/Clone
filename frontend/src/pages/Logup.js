@@ -3,7 +3,7 @@ import Signup from '../components/Signup';
 
 class Logup extends Component {
   render() {
-    return <Signup></Signup>;
+    return <div>Todo </div>;
   }
 }
 export default Logup;
