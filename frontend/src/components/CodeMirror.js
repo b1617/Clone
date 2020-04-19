@@ -14,7 +14,7 @@ class Codemirror extends Component {
   };
 
   run = (event) => {
-    let text = null;
+    let text = '';
     try {
       text = eval(this.state.request);
     } catch (e) {

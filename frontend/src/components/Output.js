@@ -11,7 +11,7 @@ export class Output extends Component {
             as='textarea'
             rows='12'
             readOnly
-            defaultValue={this.props.output}
+            value={this.props.output}
           ></Form.Control>
         </Form.Group>
       </div>
@@ -20,7 +20,6 @@ export class Output extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { output: state.output };
 };
 

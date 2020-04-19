@@ -1,8 +1,7 @@
-const outputReducer = (state = 'Hello', action) => {
-  console.log('call', action.type + ' ' + state);
+const outputReducer = (state = 'Hello World', action) => {
   switch (action.type) {
     case 'OUTPUT': {
-      return state;
+      return action.payload;
     }
     default: {
       return state;

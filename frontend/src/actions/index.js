@@ -10,7 +10,7 @@ export const logout = () => {
   };
 };
 
-export const output = (text = 'Hello') => {
+export const output = (text) => {
   return {
     type: 'OUTPUT',
     payload: text
