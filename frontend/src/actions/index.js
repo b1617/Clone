@@ -9,3 +9,10 @@ export const logout = () => {
     type: 'LOGOUT'
   };
 };
+
+export const output = (text = 'Hello') => {
+  return {
+    type: 'OUTPUT',
+    payload: text
+  };
+};
