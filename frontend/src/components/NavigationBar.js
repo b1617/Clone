@@ -1,35 +1,50 @@
 import React, { Component } from 'react';
 import { Navbar, Form, Button } from 'react-bootstrap';
-import { ChatQuoteFill } from 'react-bootstrap-icons';
+import { CodeSlash } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 class NavigationBar extends Component {
   render() {
     return (
       <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
         <Navbar.Brand href='#'>
-          <ChatQuoteFill color='#fff' size={36} />
+          <CodeSlash color='#fff' size={36} />
         </Navbar.Brand>
-        <Form inline>
+        {/* <Form inline>
           <Form.Control
             style={this.formStyle}
             type='text'
             placeholder='Search Clone'
             className='mr-sm-2'
           />
-        </Form>
+       
+       </Form>*
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
-          <Link to='/login' style={{ marginLeft: 'auto' }}>
-            <Button variant='outline-info' style={this.loginBtnStyle}>
-              Log In
-            </Button>
-          </Link>
-          <Link to='/logup'>
-            <Button variant='primary' style={this.logupBtnStyle}>
-              Log Up
-            </Button>
-          </Link>
+          {this.props.isLogged ? (
+            <Link to='/login' style={{ marginLeft: 'auto' }}>
+              <Button variant='outline-info' style={this.loginBtnStyle}>
+                Logout
+              </Button>
+            </Link>
+          ) : (
+            <div>
+              <Link to='/login' style={{ marginLeft: 'auto' }}>
+                <Button variant='outline-info' style={this.loginBtnStyle}>
+                  Log In
+                </Button>
+              </Link>
+              <Link to='/logup'>
+                <Button variant='primary' style={this.logupBtnStyle}>
+                  Log Up
+                </Button>
+              </Link>
+            </div>
+          )}
+          
         </Navbar.Collapse>
+          */}
       </Navbar>
     );
   }
@@ -58,4 +73,10 @@ class NavigationBar extends Component {
   };
 }
 
-export default NavigationBar;
+const mapStateToProps = (state) => {
+  return {
+    isLogged: state.isLogged
+  };
+};
+
+export default connect(mapStateToProps)(NavigationBar);
