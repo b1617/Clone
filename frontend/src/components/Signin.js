@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signIn } from '../actions/authActions';
 
 class Signin extends Component {
   state = {
@@ -17,9 +19,11 @@ class Signin extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log('state', this.state);
+    this.props.signIn(this.state);
   };
 
   render() {
+    const { authError } = this.props;
     return (
       <Form style={this.formStyle}>
         <Form.Group controlId='formGroupEmail' style={this.formGroupStyle}>
@@ -46,6 +50,10 @@ class Signin extends Component {
         >
           Sign In
         </Button>
+        <div>
+          {' '}
+          {authError ? <p style={{ color: 'red' }}> {authError}</p> : null}
+        </div>
         <Link to='/logup'>
           <p style={{ marginTop: '8px' }}> Sign up for Clone </p>
         </Link>
@@ -69,4 +77,16 @@ class Signin extends Component {
   };
 }
 
-export default Signin;
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (credentials) => dispatch(signIn(credentials))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

@@ -4,7 +4,7 @@ import 'codemirror/mode/javascript/javascript.js';
 import React, { Component } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { Button } from 'react-bootstrap';
-import { output } from '../actions';
+import { output } from '../actions/outputActions';
 import { connect } from 'react-redux';
 
 class Codemirror extends Component {

@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { signOut } from '../actions/authActions';
 
 class NavigationBar extends Component {
   render() {
+    const { auth } = this.props;
     return (
       <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
         <Navbar.Brand href='#'>
           <CodeSlash color='#fff' size={36} />
         </Navbar.Brand>
-        {/* <Form inline>
-          <Form.Control
-            style={this.formStyle}
-            type='text'
-            placeholder='Search Clone'
-            className='mr-sm-2'
-          />
-       
-       </Form>*
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
-          {this.props.isLogged ? (
-            <Link to='/login' style={{ marginLeft: 'auto' }}>
-              <Button variant='outline-info' style={this.loginBtnStyle}>
+          {auth.uid ? (
+            <div>
+              <Button
+                variant='outline-info'
+                style={this.loginBtnStyle}
+                onClick={this.props.signOut}
+              >
                 Logout
               </Button>
-            </Link>
+            </div>
           ) : (
             <div>
               <Link to='/login' style={{ marginLeft: 'auto' }}>
@@ -40,9 +39,8 @@ class NavigationBar extends Component {
               </Link>
             </div>
           )}
-          
+          )}
         </Navbar.Collapse>
-          */}
       </Navbar>
     );
   }
@@ -69,4 +67,17 @@ class NavigationBar extends Component {
   };
 }
 
-export default NavigationBar;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import allReducers from './reducers';
 import App from './App';
-import { createStore } from 'redux';
+import './firebase';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import rootReducers from './reducers/rootReducer';
 
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStore(rootReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>

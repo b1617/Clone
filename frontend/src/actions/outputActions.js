@@ -4,3 +4,4 @@ export const output = (text) => {
     payload: text
   };
 };
+
