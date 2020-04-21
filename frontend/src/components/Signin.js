@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import * as AuthService from '../services/auth';
-import { login } from '../actions';
+import { signIn } from '../actions/authActions';
+import * as authServices from '../services/authServices';
 import { connect } from 'react-redux';
 
 class Signin extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    authError: ''
   };
 
   onChange = (e) => {
@@ -20,15 +21,20 @@ class Signin extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log('state', this.state);
-    AuthService.signIn(this.state.email, this.state.password)
-      .then((result) => {
-        console.log('logged in ', result);
-        this.props.login();
-        localStorage.setItem('currentUser', JSON.stringify(result.user));
-        this.props.history.push('/');
+    authServices
+      .signIn(this.state.email, this.state.password)
+      .then((user) => {
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        this.props.signIn();
+        this.props.successLogin();
       })
       .catch((err) => {
-        console.log('fail signin', err);
+        this.setState({
+          ...this.state,
+          authError: 'Login Failed'
+        });
+        console.log(this.state);
       });
   };
 
@@ -59,6 +65,11 @@ class Signin extends Component {
         >
           Sign In
         </Button>
+
+        <p style={{ color: 'red', margin: '10px 0px 0px 0px' }}>
+          {this.state.authError}
+        </p>
+
         <Link to='/logup'>
           <p style={{ marginTop: '8px' }}> Sign up for Clone </p>
         </Link>
@@ -84,8 +95,7 @@ class Signin extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: () => dispatch(login())
+    signIn: () => dispatch(signIn())
   };
 };
-
 export default connect(null, mapDispatchToProps)(Signin);

@@ -3,6 +3,10 @@ import Signin from '../components/Signin';
 import { ChatQuoteFill } from 'react-bootstrap-icons';
 
 class Login extends Component {
+  successLogin = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     return (
       <div style={this.mainDivStyle}>
@@ -10,7 +14,7 @@ class Login extends Component {
           <ChatQuoteFill color='#fff' size={48} />
           <h3 style={{ marginTop: '5px' }}>Log in to Clone</h3>
         </div>
-        <Signin></Signin>
+        <Signin successLogin={this.successLogin}></Signin>
       </div>
     );
   }

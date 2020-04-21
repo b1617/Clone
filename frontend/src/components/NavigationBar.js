@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
-import { Navbar, Form, Button } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { signOut } from '../actions/authActions';
+import * as authServices from '../services/authServices';
 
 class NavigationBar extends Component {
+  signOut = () => {
+    authServices.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.props.signOut();
+    });
+  };
+
   render() {
+    const { isLogged } = this.props;
     return (
       <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
         <Navbar.Brand href='#'>
           <CodeSlash color='#fff' size={36} />
         </Navbar.Brand>
-        {/* <Form inline>
-          <Form.Control
-            style={this.formStyle}
-            type='text'
-            placeholder='Search Clone'
-            className='mr-sm-2'
-          />
-       
-       </Form>*
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
-          {this.props.isLogged ? (
-            <Link to='/login' style={{ marginLeft: 'auto' }}>
-              <Button variant='outline-info' style={this.loginBtnStyle}>
-                Logout
-              </Button>
-            </Link>
+          {isLogged ? (
+            <div>
+              <Link to='/login'>
+                <Button
+                  variant='outline-info'
+                  onClick={this.signOut}
+                  style={this.loginBtnStyle}
+                >
+                  Logout
+                </Button>
+              </Link>
+            </div>
           ) : (
             <div>
               <Link to='/login' style={{ marginLeft: 'auto' }}>
@@ -42,9 +49,8 @@ class NavigationBar extends Component {
               </Link>
             </div>
           )}
-          
+          )}
         </Navbar.Collapse>
-          */}
       </Navbar>
     );
   }
@@ -57,8 +63,6 @@ class NavigationBar extends Component {
   navStyle = {
     display: 'flex',
     borderBottom: '1px solid #253341'
-    // marginLeft: '100px',
-    // marginRight: '100px'
   };
 
   logupBtnStyle = {
@@ -79,4 +83,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(NavigationBar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
