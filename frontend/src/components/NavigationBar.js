@@ -18,9 +18,11 @@ class NavigationBar extends Component {
     const { isLogged } = this.props;
     return (
       <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
-        <Navbar.Brand href='#'>
-          <CodeSlash color='#fff' size={36} />
-        </Navbar.Brand>
+        <Link to='/'>
+          <Navbar.Brand>
+            <CodeSlash color='#fff' size={36} />
+          </Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
           {isLogged ? (

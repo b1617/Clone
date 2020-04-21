@@ -4,7 +4,7 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <h3 style={{ color: '#fff' }}>SignUp</h3>
+        <p style={{ color: 'red' }}>Todo</p>
       </div>
     );
   }
