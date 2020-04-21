@@ -4,10 +4,18 @@ import { CodeSlash } from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOut } from '../actions/authActions';
+import * as authServices from '../services/authServices';
 
 class NavigationBar extends Component {
+  signOut = () => {
+    authServices.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.props.signOut();
+    });
+  };
+
   render() {
-    const { auth } = this.props;
+    const { isLogged } = this.props;
     return (
       <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
         <Navbar.Brand href='#'>
@@ -15,15 +23,17 @@ class NavigationBar extends Component {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
-          {auth.uid ? (
+          {isLogged ? (
             <div>
-              <Button
-                variant='outline-info'
-                style={this.loginBtnStyle}
-                onClick={this.props.signOut}
-              >
-                Logout
-              </Button>
+              <Link to='/login'>
+                <Button
+                  variant='outline-info'
+                  onClick={this.signOut}
+                  style={this.loginBtnStyle}
+                >
+                  Logout
+                </Button>
+              </Link>
             </div>
           ) : (
             <div>
@@ -68,9 +78,8 @@ class NavigationBar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    auth: state.firebase.auth
+    isLogged: state.isLogged
   };
 };
 

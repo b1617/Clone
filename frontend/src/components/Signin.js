@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { signIn } from '../actions/authActions';
+import * as authServices from '../services/authServices';
+import { connect } from 'react-redux';
 
 class Signin extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    authError: ''
   };
 
   onChange = (e) => {
@@ -19,11 +21,24 @@ class Signin extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log('state', this.state);
-    this.props.signIn(this.state);
+    authServices
+      .signIn(this.state.email, this.state.password)
+      .then((user) => {
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        this.props.signIn();
+        this.props.successLogin();
+      })
+      .catch((err) => {
+        this.setState({
+          ...this.state,
+          authError: 'Login Failed'
+        });
+        console.log(this.state);
+      });
   };
 
   render() {
-    const { authError } = this.props;
     return (
       <Form style={this.formStyle}>
         <Form.Group controlId='formGroupEmail' style={this.formGroupStyle}>
@@ -50,10 +65,11 @@ class Signin extends Component {
         >
           Sign In
         </Button>
-        <div>
-          {' '}
-          {authError ? <p style={{ color: 'red' }}> {authError}</p> : null}
-        </div>
+
+        <p style={{ color: 'red', margin: '10px 0px 0px 0px' }}>
+          {this.state.authError}
+        </p>
+
         <Link to='/logup'>
           <p style={{ marginTop: '8px' }}> Sign up for Clone </p>
         </Link>
@@ -77,16 +93,9 @@ class Signin extends Component {
   };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    authError: state.auth.authError
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: (credentials) => dispatch(signIn(credentials))
+    signIn: () => dispatch(signIn())
   };
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signin);
+export default connect(null, mapDispatchToProps)(Signin);
