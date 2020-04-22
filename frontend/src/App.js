@@ -10,14 +10,6 @@ import Code from './pages/Code';
 import PrivateRoute from './helpers/PrivateRoute';
 import { signIn } from './actions/authActions';
 import { connect } from 'react-redux';
-import openSocket from 'socket.io-client';
-const endPoint = 'http://localhost:5000';
-const socket = openSocket(endPoint);
-
-socket.on('time', (time) => {
-  console.log(time);
-});
-
 
 class App extends Component {
   componentDidMount() {
