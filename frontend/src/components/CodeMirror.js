@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 class Codemirror extends Component {
   state = {
-    request: ''
+    request: this.props.request
   };
 
   run = (event) => {
@@ -26,13 +26,14 @@ class Codemirror extends Component {
   };
 
   render() {
+    let text = this.props.message ? this.props.message : this.state.request;
     return (
       <div style={{ margin: '15px 50px 50px 50px' }}>
         <div>
           <h4 style={{ color: 'white' }}>Javascript</h4>
         </div>
         <CodeMirror
-          value={this.state.request}
+          value={text}
           options={{
             mode: 'javascript',
             theme: 'material',
@@ -41,7 +42,9 @@ class Codemirror extends Component {
           onBeforeChange={(editor, data, value) => {
             this.setState({ request: value });
           }}
-          // onChange={(editor, data, value) => {}}
+          onChange={(editor, data, value) => {
+            this.props.emit(value);
+          }}
         />
         <div style={this.divBtn}>
           <Button style={this.btn} variant='outline-primary' onClick={this.run}>
@@ -62,10 +65,16 @@ class Codemirror extends Component {
   };
 }
 
+const mapStateToProps = (state) => {
+  return {
+    message: state.message
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     output: (text) => dispatch(output(text))
   };
 };
 
-export default connect(null, mapDispatchToProps)(Codemirror);
+export default connect(mapStateToProps, mapDispatchToProps)(Codemirror);
