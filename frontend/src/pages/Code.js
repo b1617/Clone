@@ -9,21 +9,13 @@ const endPoint = 'http://localhost:5000';
 let socket = null;
 
 class Code extends Component {
-  state = {
-    request: ''
-  };
-
   componentDidMount() {
     socket = openSocket(endPoint);
     socket.on('time', (time) => {
       console.log(time);
     });
     socket.on('message', (message) => {
-      console.log('message received');
-      this.setState({
-        ...this.state,
-        request: message
-      });
+      console.log('message received', message);
       this.props.message(message);
     });
   }
@@ -45,7 +37,7 @@ class Code extends Component {
   render() {
     return (
       <div className='code'>
-        <CodeMirror emit={this.emit} request={this.message}></CodeMirror>
+        <CodeMirror emit={this.emit}></CodeMirror>
         <Output></Output>
       </div>
     );

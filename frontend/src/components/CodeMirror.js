@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 class Codemirror extends Component {
   state = {
-    request: this.props.request
+    request: ''
   };
 
   run = (event) => {
@@ -21,29 +21,42 @@ class Codemirror extends Component {
         text = e.message;
       }
     }
-    text = !text ? 'undefined' : text;
-    this.props.output(text);
+    this.props.output(text ?? 'undefined');
   };
 
+  send = () => {
+    console.log('send', this.state.request);
+    this.props.emit(this.state.request);
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      request: nextProps.message
+    });
+  }
+
   render() {
-    let text = this.props.message ? this.props.message : this.state.request;
     return (
       <div style={{ margin: '15px 50px 50px 50px' }}>
         <div>
           <h4 style={{ color: 'white' }}>Javascript</h4>
         </div>
         <CodeMirror
-          value={text}
+          value={this.state.request}
           options={{
             mode: 'javascript',
             theme: 'material',
             lineNumbers: true
           }}
           onBeforeChange={(editor, data, value) => {
+            console.log('before', value);
             this.setState({ request: value });
           }}
           onChange={(editor, data, value) => {
-            this.props.emit(value);
+            console.log(data.origin);
+            if (data.origin !== undefined) {
+              this.send();
+            }
           }}
         />
         <div style={this.divBtn}>
