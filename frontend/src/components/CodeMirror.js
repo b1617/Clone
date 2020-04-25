@@ -21,9 +21,19 @@ class Codemirror extends Component {
         text = e.message;
       }
     }
-    text = !text ? 'undefined' : text;
-    this.props.output(text);
+    this.props.output(text ?? 'undefined');
   };
+
+  send = () => {
+    console.log('send', this.state.request);
+    this.props.emit(this.state.request);
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      request: nextProps.message
+    });
+  }
 
   render() {
     return (
@@ -39,9 +49,15 @@ class Codemirror extends Component {
             lineNumbers: true
           }}
           onBeforeChange={(editor, data, value) => {
+            console.log('before', value);
             this.setState({ request: value });
           }}
-          // onChange={(editor, data, value) => {}}
+          onChange={(editor, data, value) => {
+            console.log(data.origin);
+            if (data.origin !== undefined) {
+              this.send();
+            }
+          }}
         />
         <div style={this.divBtn}>
           <Button style={this.btn} variant='outline-primary' onClick={this.run}>
@@ -62,10 +78,16 @@ class Codemirror extends Component {
   };
 }
 
+const mapStateToProps = (state) => {
+  return {
+    message: state.message
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     output: (text) => dispatch(output(text))
   };
 };
 
-export default connect(null, mapDispatchToProps)(Codemirror);
+export default connect(mapStateToProps, mapDispatchToProps)(Codemirror);
