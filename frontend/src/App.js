@@ -13,12 +13,17 @@ import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {
+    let signed = false;
     firebase.auth().onAuthStateChanged((user) => {
       console.log(user);
       if (user) {
+        signed = true;
         this.props.signIn();
       }
     });
+    if (!signed && localStorage.getItem('user')) {
+      this.props.signIn();
+    }
   }
 
   render() {
