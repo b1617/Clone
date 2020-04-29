@@ -60,7 +60,10 @@ class Codemirror extends Component {
           }}
         />
         <div style={this.divBtn}>
-          <Button style={{ width: '100%' }} onClick={this.run}>
+          <Button
+            style={{ width: '100%', borderRadius: '0px' }}
+            onClick={this.run}
+          >
             Submit
           </Button>
         </div>

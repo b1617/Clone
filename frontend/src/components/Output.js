@@ -13,7 +13,6 @@ export class Output extends Component {
         <Form.Control
           style={{
             border: '1px black solid',
-            radius: '0px',
             minHeight: '70vh'
           }}
           as='textarea'

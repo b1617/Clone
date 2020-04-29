@@ -56,7 +56,7 @@ export default function Index() {
                                   <input
                                     type='text'
                                     className='form-control'
-                                    placeholder='enter secret id'
+                                    placeholder='ENTER YOUR KEY...'
                                   />
                                 </div>
                               </div>

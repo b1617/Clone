@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Button } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signOut } from '../actions/authActions';
 import * as authServices from '../services/authServices';
 
@@ -51,9 +51,9 @@ class NavigationBar extends Component {
               </li>
               {isLogged ? (
                 <li className='nav-item cta cta-colored'>
-                  <a onClick={this.signOut} className='nav-link'>
+                  <Link to='/' onClick={this.signOut} className='nav-link'>
                     Logout
-                  </a>
+                  </Link>
                 </li>
               ) : (
                 <li className='nav-item cta mr-md-1'>
