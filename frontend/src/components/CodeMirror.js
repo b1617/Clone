@@ -37,9 +37,9 @@ class Codemirror extends Component {
 
   render() {
     return (
-      <div style={{ margin: '15px 50px 50px 50px' }}>
+      <div style={{ margin: '100px 100px 100px 100px' }}>
         <div>
-          <h4 style={{ color: 'white' }}>Javascript</h4>
+          <h4>Javascript</h4>
         </div>
         <CodeMirror
           value={this.state.request}
@@ -60,7 +60,10 @@ class Codemirror extends Component {
           }}
         />
         <div style={this.divBtn}>
-          <Button style={this.btn} variant='outline-primary' onClick={this.run}>
+          <Button
+            style={{ width: '100%', borderRadius: '0px' }}
+            onClick={this.run}
+          >
             Submit
           </Button>
         </div>
@@ -71,10 +74,6 @@ class Codemirror extends Component {
   divBtn = {
     display: 'flex',
     justifyContent: 'flex-end'
-  };
-  btn = {
-    marginLeft: '1px',
-    width: '20%'
   };
 }
 

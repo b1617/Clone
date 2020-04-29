@@ -10,6 +10,7 @@ import Code from './pages/Code';
 import PrivateRoute from './helpers/PrivateRoute';
 import { signIn } from './actions/authActions';
 import { connect } from 'react-redux';
+import Index from './pages/landing/Index';
 
 class App extends Component {
   componentDidMount() {
@@ -32,7 +33,8 @@ class App extends Component {
         <div className='App'>
           <NavigationBar></NavigationBar>
           <Switch>
-            <PrivateRoute exact path='/' component={Code} />
+            <PrivateRoute exact path='/code' component={Code} />
+            <Route exact path='/' component={Index} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/logup' component={Logup} />
           </Switch>
