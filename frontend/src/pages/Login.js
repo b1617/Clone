@@ -12,7 +12,7 @@ class Login extends Component {
       <div style={this.mainDivStyle}>
         <div style={this.secondDivStyle}>
           <ChatQuoteFill color='#fff' size={48} />
-          <h3 style={{ marginTop: '5px' }}>Log in to Clone</h3>
+          <h3 style={{ color: '#6C63FF' }}>Log in to Clone</h3>
         </div>
         <Signin successLogin={this.successLogin}></Signin>
       </div>

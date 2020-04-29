@@ -23,84 +23,49 @@ class NavigationBar extends Component {
         id='ftco-navbar'
       >
         <div className='container'>
-          <a className='navbar-brand' href='index.html'>
+          <Link to='/' className='navbar-brand'>
             {' '}
             {name}
-          </a>
-          <button
-            className='navbar-toggler'
-            type='button'
-            data-toggle='collapse'
-            data-target='#ftco-nav'
-            aria-controls='ftco-nav'
-            aria-expanded='false'
-            aria-label='Toggle navigation'
-          >
-            <span className='oi oi-menu'></span> Menu
-          </button>
-
+          </Link>
           <div className='collapse navbar-collapse' id='ftco-nav'>
             <ul className='navbar-nav ml-auto'>
-              {/*
-          
               <li className='nav-item active'>
-                <a href='index.html' className='nav-link'>
-                  Home
-                </a>
+                <Link to='/' className='nav-link'>
+                  Create
+                </Link>
               </li>
-
-            */}
-              <li className='nav-item cta mr-md-1'>
-                <a href='new-post.html' className='nav-link'>
-                  Login
-                </a>
+              <li className='nav-item active'>
+                <Link to='/code' className='nav-link'>
+                  Join
+                </Link>
               </li>
-              <li className='nav-item cta cta-colored'>
-                <a href='job-post.html' className='nav-link'>
-                  Sign up
-                </a>
+              <li className='nav-item active'>
+                <Link to='/' className='nav-link'>
+                  Profile
+                </Link>
               </li>
+              <li className='nav-item active'>
+                <Link to='/' className='nav-link'>
+                  Settings
+                </Link>
+              </li>
+              {isLogged ? (
+                <li className='nav-item cta cta-colored'>
+                  <a onClick={this.signOut} className='nav-link'>
+                    Logout
+                  </a>
+                </li>
+              ) : (
+                <li className='nav-item cta mr-md-1'>
+                  <Link to='/login' className='nav-link'>
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
       </nav>
-      //   <Navbar collapseOnSelect expand='lg' variant='dark' style={this.navStyle}>
-      //     <Link to='/'>
-      //       <Navbar.Brand>
-      //         <CodeSlash color='#fff' size={36} />
-      //       </Navbar.Brand>
-      //     </Link>
-      //     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-      //     <Navbar.Collapse id='responsive-navbar-nav' style={{ flex: 1 }}>
-      //       {isLogged ? (
-      //         <div>
-      //           <Link to='/login'>
-      //             <Button
-      //               variant='outline-info'
-      //               onClick={this.signOut}
-      //               style={this.loginBtnStyle}
-      //             >
-      //               Logout
-      //             </Button>
-      //           </Link>
-      //         </div>
-      //       ) : (
-      //         <div>
-      //           <Link to='/login' style={{ marginLeft: 'auto' }}>
-      //             <Button variant='outline-info' style={this.loginBtnStyle}>
-      //               Log In
-      //             </Button>
-      //           </Link>
-      //           <Link to='/logup'>
-      //             <Button variant='primary' style={this.logupBtnStyle}>
-      //               Log Up
-      //             </Button>
-      //           </Link>
-      //         </div>
-      //       )}
-      //       )}
-      //     </Navbar.Collapse>
-      //   </Navbar>
     );
   }
 }

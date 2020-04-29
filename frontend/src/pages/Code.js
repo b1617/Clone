@@ -37,8 +37,8 @@ class Code extends Component {
   render() {
     return (
       <div className='code'>
-        <CodeMirror emit={this.emit}></CodeMirror>
-        <Output></Output>
+        <CodeMirror emit={this.emit} className='codemirror'></CodeMirror>
+        <Output className='output'></Output>
       </div>
     );
   }

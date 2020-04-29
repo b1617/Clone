@@ -32,12 +32,12 @@ class App extends Component {
       <BrowserRouter>
         <div className='App'>
           <NavigationBar></NavigationBar>
-          <Route exact path='/' component={Index} />
-          {/*  <Switch>
-            <PrivateRoute exact path='/' component={Code} />
+          <Switch>
+            <PrivateRoute exact path='/code' component={Code} />
+            <Route exact path='/' component={Index} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/logup' component={Logup} />
-    </Switch> */}
+          </Switch>
         </div>
       </BrowserRouter>
     );
