@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Button, Container, Nav } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, NavLink } from 'react-router-dom';
 import { signOut } from '../actions/authActions';
 import * as authServices from '../services/authServices';
 
@@ -25,19 +25,27 @@ class NavigationBar extends Component {
           </Link>
         </Navbar.Brand>
         <Nav className='mr-auto'>
-          <Nav.Link href='/join'>Join</Nav.Link>
-          <Nav.Link href='/create'>Create</Nav.Link>
+          <Nav.Link as={NavLink} to='/code'>
+            Join
+          </Nav.Link>
+          <Nav.Link as={NavLink} to='/create'>
+            Create
+          </Nav.Link>
         </Nav>
         {isLogged ? (
           <Nav className='ml-auto'>
-            <Nav.Link href='/' onClick={this.signOut}>
+            <Nav.Link as={NavLink} to='/' onClick={this.signOut}>
               Logout
             </Nav.Link>
           </Nav>
         ) : (
           <Nav className='ml-auto'>
-            <Nav.Link href='/login'>Login</Nav.Link>
-            <Nav.Link href='/register'>Register</Nav.Link>
+            <Nav.Link as={NavLink} to='/login'>
+              Login
+            </Nav.Link>
+            <Nav.Link as={NavLink} to='/register'>
+              Register
+            </Nav.Link>
           </Nav>
         )}
       </Navbar>

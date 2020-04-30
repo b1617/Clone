@@ -10,7 +10,7 @@ import Code from './pages/Code';
 import PrivateRoute from './helpers/PrivateRoute';
 import { signIn } from './actions/authActions';
 import { connect } from 'react-redux';
-import Index from './pages/landing/Index';
+import Index from './pages/Index';
 
 class App extends Component {
   componentDidMount() {
