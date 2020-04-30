@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button, Container, Nav } from 'react-bootstrap';
 import { CodeSlash } from 'react-bootstrap-icons';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
@@ -16,56 +16,31 @@ class NavigationBar extends Component {
 
   render() {
     const { isLogged } = this.props;
-    const name = '</ Clone />';
+    console.log(isLogged);
     return (
-      <nav
-        className='navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light'
-        id='ftco-navbar'
-      >
-        <div className='container'>
-          <Link to='/' className='navbar-brand'>
-            {' '}
-            {name}
+      <Navbar bg='light' variant='light'>
+        <Navbar.Brand>
+          <Link to='/'>
+            <CodeSlash size={32}></CodeSlash> Clone
           </Link>
-          <div className='collapse navbar-collapse' id='ftco-nav'>
-            <ul className='navbar-nav ml-auto'>
-              <li className='nav-item active'>
-                <Link to='/' className='nav-link'>
-                  Create
-                </Link>
-              </li>
-              <li className='nav-item active'>
-                <Link to='/code' className='nav-link'>
-                  Join
-                </Link>
-              </li>
-              <li className='nav-item active'>
-                <Link to='/' className='nav-link'>
-                  Profile
-                </Link>
-              </li>
-              <li className='nav-item active'>
-                <Link to='/' className='nav-link'>
-                  Settings
-                </Link>
-              </li>
-              {isLogged ? (
-                <li className='nav-item cta cta-colored'>
-                  <Link to='/' onClick={this.signOut} className='nav-link'>
-                    Logout
-                  </Link>
-                </li>
-              ) : (
-                <li className='nav-item cta mr-md-1'>
-                  <Link to='/login' className='nav-link'>
-                    Login
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-      </nav>
+        </Navbar.Brand>
+        <Nav className='mr-auto'>
+          <Nav.Link href='/join'>Join</Nav.Link>
+          <Nav.Link href='/create'>Create</Nav.Link>
+        </Nav>
+        {isLogged ? (
+          <Nav className='ml-auto'>
+            <Nav.Link href='/' onClick={this.signOut}>
+              Logout
+            </Nav.Link>
+          </Nav>
+        ) : (
+          <Nav className='ml-auto'>
+            <Nav.Link href='/login'>Login</Nav.Link>
+            <Nav.Link href='/register'>Register</Nav.Link>
+          </Nav>
+        )}
+      </Navbar>
     );
   }
 }

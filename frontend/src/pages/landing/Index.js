@@ -1,20 +1,20 @@
 import React from 'react';
 import work from '../../assets/svg/work.svg';
+import { Col, Row, Container } from 'react-bootstrap';
 
 export default function Index() {
   return (
-    <div className='hero-wrap js-fullheight'>
-      <div class='overlay'></div>
-      <div className='container-fluid px-0'>
-        <div className='row d-md-flex no-gutters slider-text align-items-end js-fullheight justify-content-end'>
-          <img
-            className='one-third align-self-end order-md-last img-fluid'
-            src={work}
-            alt=''
-          />
+    <Container>
+      <Row>
+        <Col xs md lg={6}>
+          <img src={work} alt='' />
+        </Col>
+        <Col xs md lg={6}>
+          <h1 className='mb-5'>Coding is art, create yours</h1>
+        </Col>
+        {/* 
           <div className='one-forth d-flex align-items-center js-fullheight'>
             <div className='text mt-5'>
-              <h1 className='mb-5'>Coding is art, create yours</h1>
               <div className='ftco-search'>
                 <div className='row'>
                   <div className='col-md-12 nav-link-wrap'>
@@ -82,8 +82,8 @@ export default function Index() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+  */}
+      </Row>
+    </Container>
   );
 }

@@ -11,8 +11,8 @@ class Login extends Component {
     return (
       <div style={this.mainDivStyle}>
         <div style={this.secondDivStyle}>
-          <ChatQuoteFill color='#fff' size={48} />
-          <h3 style={{ color: '#6C63FF' }}>Log in to Clone</h3>
+          {/* <ChatQuoteFill size={48} />*/}
+          <h3>Log in to Clone</h3>
         </div>
         <Signin successLogin={this.successLogin}></Signin>
       </div>
@@ -24,7 +24,6 @@ class Login extends Component {
   };
 
   secondDivStyle = {
-    color: '#fff',
     textAlign: 'center',
     margin: '5px',
     padding: '5px'
