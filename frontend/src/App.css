@@ -6,6 +6,10 @@
   --breakpoint-xl: 1200px;
 }
 
+textarea {
+  resize: none;
+}
+
 .slogan {
   padding: 15% 0% 0% 10%;
   font-size: 5vw;

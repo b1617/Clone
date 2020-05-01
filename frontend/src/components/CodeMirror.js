@@ -1,9 +1,11 @@
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+import 'codemirror/theme/eclipse.css';
 import 'codemirror/mode/javascript/javascript.js';
 import React, { Component } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { Button } from 'react-bootstrap';
+import { Button, Nav, NavDropdown } from 'react-bootstrap';
+import { Lightning, Trash } from 'react-bootstrap-icons';
 import { output } from '../actions/outputActions';
 import { connect } from 'react-redux';
 
@@ -29,6 +31,13 @@ class Codemirror extends Component {
     this.props.emit(this.state.request);
   };
 
+  clear = () => {
+    console.log('clear');
+    this.setState({
+      request: ''
+    });
+  };
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       request: nextProps.message
@@ -37,10 +46,23 @@ class Codemirror extends Component {
 
   render() {
     return (
-      <div style={{ margin: '100px 100px 100px 100px' }}>
-        <div>
-          <h4>Javascript</h4>
-        </div>
+      <div>
+        <Nav>
+          <NavDropdown title='Javascript' id='nav-dropdown'>
+            <NavDropdown.Item active>Javascript</NavDropdown.Item>
+            <NavDropdown.Item>Python</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Item>
+            <Nav.Link onClick={this.run}>
+              <Lightning></Lightning>Run
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={this.clear}>
+              <Trash></Trash> Clear
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
         <CodeMirror
           value={this.state.request}
           options={{
@@ -59,22 +81,9 @@ class Codemirror extends Component {
             }
           }}
         />
-        <div style={this.divBtn}>
-          <Button
-            style={{ width: '100%', borderRadius: '0px' }}
-            onClick={this.run}
-          >
-            Submit
-          </Button>
-        </div>
       </div>
     );
   }
-
-  divBtn = {
-    display: 'flex',
-    justifyContent: 'flex-end'
-  };
 }
 
 const mapStateToProps = (state) => {
