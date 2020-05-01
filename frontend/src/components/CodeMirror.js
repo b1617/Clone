@@ -5,7 +5,7 @@ import 'codemirror/mode/javascript/javascript.js';
 import React, { Component } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { Button, Nav, NavDropdown } from 'react-bootstrap';
-import { Lightning, Trash } from 'react-bootstrap-icons';
+import { Lightning, Trash, Wrench } from 'react-bootstrap-icons';
 import { output } from '../actions/outputActions';
 import { connect } from 'react-redux';
 
@@ -36,6 +36,8 @@ class Codemirror extends Component {
     this.setState({
       request: ''
     });
+    this.state.request = '';
+    this.send();
   };
 
   componentWillReceiveProps(nextProps) {
@@ -54,7 +56,7 @@ class Codemirror extends Component {
           </NavDropdown>
           <Nav.Item>
             <Nav.Link onClick={this.run}>
-              <Lightning></Lightning>Run
+              <Lightning></Lightning> Run
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
