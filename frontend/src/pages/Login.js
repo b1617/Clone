@@ -4,7 +4,7 @@ import { ChatQuoteFill } from 'react-bootstrap-icons';
 
 class Login extends Component {
   successLogin = () => {
-    this.props.history.push('/');
+    this.props.history.push('/code');
   };
 
   render() {

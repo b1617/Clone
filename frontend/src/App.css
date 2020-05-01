@@ -16,3 +16,11 @@ textarea {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
 }
+
+.join {
+  padding-left: 10%;
+}
+
+.form-join {
+  padding: 5% 0% 0% 10%;
+}
