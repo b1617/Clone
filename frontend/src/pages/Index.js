@@ -1,5 +1,6 @@
 import React from 'react';
 import work from '../assets/svg/work.svg';
+import footer from '../assets/img/footer.png';
 import { Col, Row, Container, Form, Tabs, Tab, Button } from 'react-bootstrap';
 
 export default function Index() {
@@ -15,9 +16,9 @@ export default function Index() {
                   <Form.Control size='lg' placeholder='Enter your key...' />
                 </Col>
                 <Col>
-                  <Button size='lg' variant='outline-primary'>
+                  <Button size='lg' variant='outline-primary' block>
                     Join
-                  </Button>{' '}
+                  </Button>
                 </Col>
               </Row>
             </Tab>
@@ -26,6 +27,19 @@ export default function Index() {
         <Col>
           <img src={work} alt='undraw' height='100%' width='100%' />
         </Col>
+      </Row>
+      <Row>
+        <img
+          src={footer}
+          alt='waves'
+          width='100%'
+          style={{
+            position: 'fixed',
+            bottom: '-250px',
+            opacity: '0.2',
+            zIndex: '-1'
+          }}
+        />
       </Row>
     </Container>
   );
