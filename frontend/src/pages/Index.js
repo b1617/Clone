@@ -25,7 +25,16 @@ export default function Index() {
           </Tabs>
         </Col>
         <Col>
-          <img src={work} alt='undraw' height='100%' width='100%' />
+          <img
+            src={work}
+            alt='undraw'
+            height='100%'
+            width='100%'
+            style={{
+              bottom: '3%',
+              position: 'relative'
+            }}
+          />
         </Col>
       </Row>
       <Row>
@@ -35,7 +44,7 @@ export default function Index() {
           width='100%'
           style={{
             position: 'fixed',
-            bottom: '-250px',
+            bottom: '-230px',
             opacity: '0.2',
             zIndex: '-1'
           }}
